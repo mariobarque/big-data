@@ -18,7 +18,7 @@ def test_join_happy_path(spark_session):
                      (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -131,7 +131,7 @@ def test_join_when_more_than_one_course_per_student(spark_session):
                      (1, 'Mario', 1, 4, 90, 'CS'), (2, 'Paula', 2, 2, 95, 'Biology'),]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -152,7 +152,7 @@ def test_join_when_invalid_student_id_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -171,7 +171,7 @@ def test_join_when_invalid_student_id_negative(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -190,7 +190,7 @@ def test_join_when_invalid_student_name_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -209,7 +209,7 @@ def test_join_when_invalid_student_name_empty(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -228,7 +228,7 @@ def test_join_when_invalid_student_major_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -247,7 +247,7 @@ def test_join_when_invalid_student_major_empty(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -269,7 +269,7 @@ def test_join_when_invalid_course_id_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -288,7 +288,7 @@ def test_join_when_invalid_course_id_negative(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -307,7 +307,7 @@ def test_join_when_invalid_course_credits_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -326,7 +326,7 @@ def test_join_when_invalid_course_credits_negative(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -345,7 +345,7 @@ def test_join_when_invalid_course_major_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -364,7 +364,7 @@ def test_join_when_invalid_course_major_empty(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -385,7 +385,7 @@ def test_join_when_invalid_grade_student_id_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -404,7 +404,7 @@ def test_join_when_invalid_grade_student_id_negative(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -424,7 +424,7 @@ def test_join_when_invalid_grade_null(spark_session):
                      (1, 'Mario', 1, 4, 90, 'CS'), (2, 'Paula', 2, 2, 95, 'Biology'),]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -444,7 +444,7 @@ def test_join_when_invalid_grade_negative(spark_session):
                      (1, 'Mario', 1, 4, 90, 'CS'), (2, 'Paula', 2, 2, 95, 'Biology'),]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -463,7 +463,7 @@ def test_join_when_invalid_grade_negative_only_course_of_student(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology'),]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -482,7 +482,7 @@ def test_join_when_invalid_grade_course_id_is_null(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()
@@ -501,7 +501,7 @@ def test_join_when_invalid_grade_course_id_is_negative(spark_session):
     expected_data = [(3, 'Juan', 3, 4, 84, 'Business'), (2, 'Paula', 2, 2, 95, 'Biology')]
     expected_df = spark_session.createDataFrame(expected_data, ['student_id', 'name',
                                                                 'course_id', 'credits',
-                                                                'grade', 'course_major'])
+                                                                'grade', 'student_major'])
 
     top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
     actual_df = top_students_finder.join_student_data()

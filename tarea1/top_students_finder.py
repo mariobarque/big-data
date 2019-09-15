@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 from tarea1.data_validations import DataValidations
+import pyspark.sql.functions as func
 
 
 class TopStudentsFinder:
@@ -22,18 +23,39 @@ class TopStudentsFinder:
 
         student_grades_by_course = tmp_student_grades\
             .join(courses_filtered_df, tmp_student_grades['course_id'] == courses_filtered_df['id'])\
-            .select('student_id', 'name', 'course_id', 'credits', 'grade', 'course_major')
+            .select('student_id', 'name', 'course_id', 'credits', 'grade', 'student_major')
 
         student_grades_by_course = student_grades_by_course.sort(student_grades_by_course['name'],
                                                                  student_grades_by_course['grade'])
 
         return student_grades_by_course
 
-    def group_student_data(self):
-        return None
+    @staticmethod
+    def group_student_data(df_students):
+        if df_students is None:
+            return None
+
+        df_students_filtered = df_students.filter(DataValidations.get_joined_data_validations())
+
+        df_students_filtered = df_students_filtered\
+            .withColumn('grad_times_credits', df_students_filtered['grade'] * df_students_filtered['credits'])
+
+        grouped_df = df_students_filtered\
+            .groupby('student_id', 'student_major')\
+            .agg({'credits': 'sum', 'grad_times_credits': 'sum'})
+
+        grouped_df = grouped_df\
+            .withColumn('score', func.round(grouped_df['sum(grad_times_credits)'] / grouped_df['sum(credits)'], 2)) \
+            .select('student_id', 'student_major', 'score')\
+            .sort(grouped_df['student_major'], grouped_df['student_id'])
+
+        return grouped_df
 
     def get_top_n_students(self):
-        pass
+        student_df = self.join_student_data()
+        grouped_df = TopStudentsFinder.group_student_data(student_df)
+
+
 
 
 
@@ -48,16 +70,16 @@ class TopStudentsFinder:
 def test():
     spark_session = SparkSession.builder.appName('pytest-local-spark').master('local').getOrCreate()
 
-    course_data = [(1, 4, 'CS'), (2, 2, 'Biology'), (3, 4, 'Business'), (4, 6, 'CS'), (5, 8, 'CS')]
-    grade_data = [(1, 1, 90), (2, 2, 95), (3, 3, 84), (1, 4, 65), (1, 5, 87)]
+    data = [(3, 'Juan', 3, 4, 84, 'Business'),
+            (1, 'Mario', 4, 6, 65, 'CS'),
+            (1, 'Mario', 5, 8, 87, 'CS'),
+            (1, 'Mario', 1, 4, 90, 'CS'),
+            (2, 'Paula', 2, 2, 95, 'Biology'),]
+    df = spark_session.createDataFrame(data,
+            ['student_id', 'name', 'course_id', 'credits', 'grade', 'student_major'])
 
-    students_df = spark_session.createDataFrame([], ['id', 'name', 'student_major'])
-    courses_df = spark_session.createDataFrame(course_data, ['id', 'credits', 'course_major'])
-    grades_df = spark_session.createDataFrame(grade_data, ['student_id', 'course_id', 'grade'])
+    df = TopStudentsFinder.group_student_data(df)
 
-    top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
-    actual_df = top_students_finder.join_student_data()
-
-    actual_df.show()
+    df.show()
 
 #test()
