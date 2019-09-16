@@ -4,19 +4,6 @@ from pyspark.sql.types import IntegerType, StringType, StructField, StructType
 from tarea1.top_students_finder import TopStudentsFinder
 
 
-def main():
-    spark = SparkSession.builder.appName('database').master('local').getOrCreate()
-    students_df, courses_df, grades_df = load_data(spark)
-
-    top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
-    top_three_students = top_students_finder.get_top_n_students()
-
-    top_three_students.show()
-
-
-if __name__ == "__main__":
-    main()
-
 
 def load_data(spark):
     students_df = spark \
@@ -53,3 +40,17 @@ def load_data(spark):
         .load()
 
     return students_df, courses_df, grades_df
+
+
+def main():
+    spark = SparkSession.builder.appName('database').master('local').getOrCreate()
+    students_df, courses_df, grades_df = load_data(spark)
+
+    top_students_finder = TopStudentsFinder(students_df, courses_df, grades_df)
+    top_three_students = top_students_finder.get_top_n_students(2)
+
+    top_three_students.show()
+
+
+if __name__ == "__main__":
+    main()

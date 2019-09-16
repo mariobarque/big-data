@@ -55,3 +55,15 @@ class DataValidations:
             'length(student_major) > 0'
         ]
         return ' and '.join(validations)
+
+    @staticmethod
+    def get_grouped_data_validations():
+        validations = [
+            'student_id is not null',
+            'student_id > 0',
+            'student_major is not null',
+            'length(student_major) > 0',
+            'score is not null',
+            'score > 0'
+        ]
+        return ' and '.join(validations)
