@@ -1,0 +1,203 @@
+[
+    {
+      "numero_caja": 5,
+      "compras": [
+        [
+          {
+            "nombre": "zanahoria",
+            "cantidad": 4,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "naranja",
+            "cantidad": 1,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "manzana",
+            "cantidad": 5,
+            "precio_unitario": 100
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 7,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "zanahoria",
+            "cantidad": 4,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 4,
+            "precio_unitario": 200
+          }
+        ]
+      ]
+    },
+    {
+      "numero_caja": 6,
+      "compras": [
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 5,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "manzana",
+            "cantidad": 2,
+            "precio_unitario": 100
+          },
+          {
+            "nombre": "zanahoria",
+            "cantidad": 4,
+            "precio_unitario": 10
+          }
+        ],
+        [
+          {
+            "nombre": "mango",
+            "cantidad": 3,
+            "precio_unitario": 200
+          },
+          {
+            "nombre": "naranja",
+            "cantidad": 3,
+            "precio_unitario": 30
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 1,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "zanahoria",
+            "cantidad": 3,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 3,
+            "precio_unitario": 200
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 1,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 2,
+            "precio_unitario": 200
+          },
+          {
+            "nombre": "zanahoria",
+            "cantidad": 2,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "manzana",
+            "cantidad": 1,
+            "precio_unitario": 100
+          }
+        ],
+        [
+          {
+            "nombre": "zanahoria",
+            "cantidad": 5,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 3,
+            "precio_unitario": 200
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 2,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "manzana",
+            "cantidad": 2,
+            "precio_unitario": 100
+          }
+        ],
+        [
+          {
+            "nombre": "manzana",
+            "cantidad": 5,
+            "precio_unitario": 100
+          },
+          {
+            "nombre": "naranja",
+            "cantidad": 3,
+            "precio_unitario": 30
+          }
+        ],
+        [
+          {
+            "nombre": "zanahoria",
+            "cantidad": 6,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 2,
+            "precio_unitario": 200
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 1,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 1,
+            "precio_unitario": 200
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 0,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 4,
+            "precio_unitario": 200
+          }
+        ],
+        [
+          {
+            "nombre": "naranja",
+            "cantidad": 3,
+            "precio_unitario": 30
+          },
+          {
+            "nombre": "zanahoria",
+            "cantidad": 5,
+            "precio_unitario": 10
+          },
+          {
+            "nombre": "mango",
+            "cantidad": 2,
+            "precio_unitario": 200
+          }
+        ]
+      ]
+    }
+  ]
