@@ -4,6 +4,7 @@ from pyspark.sql import functions as funcs
 from functools import reduce
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, ArrayType, LongType
 import pandas as pd
+from data_validation import get_sales_data_validations
 
 
 def get_json_schema():
@@ -72,6 +73,10 @@ def get_file_array():
     return [file.name for file in args.files]
 
 def get_total_by_products(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = sales_df.groupby('producto').agg({'venta': 'sum'})
     sales_group = sales_group.orderBy(sales_group['sum(venta)'].desc())
 
@@ -79,6 +84,10 @@ def get_total_by_products(sales_df):
                               funcs.col("sum(venta)").alias("ventas"))
 
 def get_total_by_cash_register(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = sales_df.groupby('numero_caja').agg({'venta': 'sum'})
     sales_group = sales_group.orderBy(sales_group['sum(venta)'].desc())
 
@@ -87,30 +96,50 @@ def get_total_by_cash_register(sales_df):
 
 
 def get_cash_register_with_most_sales(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = get_total_by_cash_register(sales_df)
     cr_with_most_sales = sales_group.orderBy(sales_group['ventas'].desc()).first().numero_caja
 
     return cr_with_most_sales
 
 def get_cash_register_with_least_sales(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = get_total_by_cash_register(sales_df)
     cr_with_most_sales = sales_group.orderBy(sales_group['ventas'].asc()).first().numero_caja
 
     return cr_with_most_sales
 
 def get_product_with_more_units_sold(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = sales_df.groupby('producto').agg({'cantidad': 'sum'})
     product_most_unit_sold = sales_group.orderBy(sales_group['sum(cantidad)'].desc()).first().producto
 
     return product_most_unit_sold
 
 def get_product_with_more_sales(sales_df):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     sales_group = get_total_by_products(sales_df)
     product_most_unit_sold = sales_group.orderBy(sales_group['ventas'].desc()).first().producto
 
     return product_most_unit_sold
 
 def get_sales_percentile(sales_df, percentile):
+    if sales_df is None:
+        return None
+
+    sales_df = sales_df.filter(get_sales_data_validations())
     total_registers_df = get_total_by_cash_register(sales_df)
 
     return total_registers_df\
@@ -118,6 +147,9 @@ def get_sales_percentile(sales_df, percentile):
         .first().percentile
 
 def get_all_metrics(sales_df):
+    if sales_df is None:
+        return None
+
     data = [
         ['caja_con_mas_ventas', get_cash_register_with_most_sales(sales_df)],
         ['caja_con_menos_ventas', get_cash_register_with_least_sales(sales_df)],
@@ -132,6 +164,9 @@ def get_all_metrics(sales_df):
 
 
 def save_files(sales_df):
+    if sales_df is None:
+        return None
+
     # total_productos.csv
     get_total_by_products(sales_df).toPandas().to_csv('total_productos.csv', index=False, header=False)
 
@@ -149,5 +184,3 @@ if __name__ == "__main__":
     sales = union_sales_data(spark, get_json_schema(), file_array)
 
     save_files(sales)
-
-    sales.show()
